@@ -18,11 +18,11 @@
 			<p class="success-message"><c:out value="${sessionScope.successMessage}"/></p><c:remove var="successMessage" scope="session"/>
 		</c:if>
 		<div class="button-group">
-			<form action="AttendanceServlet" method="post" style="display:inline;">
+			<form action="attendance" method="post" style="display:inline;">
 				<input type="hidden" name="action" value="check_in">
 				<input type="submit" value="出勤">
 			</form>
-			<form action="AttendanceServlet" method="post" style="display:inline;">
+			<form action="attendance" method="post" style="display:inline;">
 				<input type="hidden" name="action" value="check_out">
 				<input type="submit" value="退勤">
             </form>
