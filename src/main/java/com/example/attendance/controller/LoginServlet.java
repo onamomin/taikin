@@ -16,7 +16,7 @@ import com.example.attendance.dao.AttendanceDAO;
 import com.example.attendance.dao.UserDAO;
 import com.example.attendance.dto.User;
 
-@WebServlet("/login")
+@WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 private final UserDAO userDAO = new UserDAO();
 private final AttendanceDAO attendanceDAO = new AttendanceDAO();

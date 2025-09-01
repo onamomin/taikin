@@ -1,4 +1,10 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> <!DOCTYPE html>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c"   uri="jakarta.tags.core" %>
+<%@ taglib prefix="fn"  uri="jakarta.tags.functions" %>   <%-- 使うときだけ --%>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>         <%-- 使うときだけ --%>
+
+
+<!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8"> <title>従業員メニュー</title>
@@ -12,11 +18,11 @@
 			<p class="success-message"><c:out value="${sessionScope.successMessage}"/></p><c:remove var="successMessage" scope="session"/>
 		</c:if>
 		<div class="button-group">
-			<form action="attendance" method="post" style="display:inline;">
+			<form action="AttendanceServlet" method="post" style="display:inline;">
 				<input type="hidden" name="action" value="check_in">
 				<input type="submit" value="出勤">
 			</form>
-			<form action="attendance" method="post" style="display:inline;">
+			<form action="AttendanceServlet" method="post" style="display:inline;">
 				<input type="hidden" name="action" value="check_out">
 				<input type="submit" value="退勤">
             </form>

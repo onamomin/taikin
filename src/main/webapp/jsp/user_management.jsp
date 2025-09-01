@@ -1,4 +1,10 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> <!DOCTYPE html>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c"   uri="jakarta.tags.core" %>
+<%@ taglib prefix="fn"  uri="jakarta.tags.functions" %>   <%-- 使うときだけ --%>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>         <%-- 使うときだけ --%>
+
+
+<!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8"> <title>ユーザー管理</title>

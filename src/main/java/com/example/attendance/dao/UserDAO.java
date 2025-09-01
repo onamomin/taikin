@@ -15,6 +15,7 @@ public class UserDAO {
 		users.put("employee1", new User("employee1", hashPassword("password"), "employee", true));
 		users.put("admin1", new User("admin1", hashPassword("adminpass"), "admin", true));
 		users.put("employee2", new User("employee2", hashPassword("password"), "employee", true));
+		users.put("employee3", new User("a", hashPassword("pass"), "employee", true));
 	}
 	
 	public User findByUsername(String username) { 
