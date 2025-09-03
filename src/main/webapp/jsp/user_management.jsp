@@ -45,7 +45,10 @@
 			<input type="checkbox" id="enabled" name="enabled" value="true" <c:if test="${userToEdit == null || userToEdit.enabled}">checked</c:if>>
 		</p>
 		<div class="button-group">
-			<input type="submit" value="<c:choose><c:when test="${userToEdit != null}">更新</c:when><c:otherwise>追加</c:otherwise></c:choose>">
+			<input type="submit" value="<c:choose>
+			<c:when test="${userToEdit != null}">更新</c:when>
+			<c:otherwise>追加</c:otherwise>
+			</c:choose>">
 			<c:if test="${userToEdit != null}">
 				<form action="users" method="post" style="display:inline;">
 					<input type="hidden" name="action" value="reset_password">

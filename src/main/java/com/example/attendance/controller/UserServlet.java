@@ -14,7 +14,7 @@ import jakarta.servlet.http.HttpSession;
 import com.example.attendance.dao.UserDAO;
 import com.example.attendance.dto.User;
 
-@WebServlet("/UserServlet")
+@WebServlet("/users")
 public class UserServlet extends HttpServlet {
 	private final UserDAO userDAO = new UserDAO();
 	@Override
