@@ -31,8 +31,8 @@
 		</c:if>
 		<!-- ゆーざーID -->
 		<label for="username">ユーザーID:</label>
-		<input type="text" id="username" name="username" value="${userToEdit.username}" <!-- 元はこれ → <c:out value="${userToEdit.username}"/> -->
-		<c:if test="${userToEdit != null}">readonly</c:if> required >
+		<!-- 元はこれ → <c:out value="${userToEdit.username}"/> -->
+		<input type="text" id="username" name="username" value="${userToEdit.username}" <c:if test="${userToEdit != null}">readonly</c:if> required>
 		<!-- パスワード -->
 		<label for="password">パスワード:</label>
 		<input type="password" id="password" name="password" 
