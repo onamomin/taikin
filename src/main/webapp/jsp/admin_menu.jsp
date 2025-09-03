@@ -7,15 +7,16 @@
 <html lang="ja">
 <head>
 	<meta charset="UTF-8"> <title>管理者メニュー</title>
-	<link rel="stylesheet" href="../style.css">
+	<link rel="stylesheet" href="<c:url value='/style.css'/>">
 </head>
 	<body>
 		<div class="container">
 			<h1>管理者メニュー</h1>
 			<p>ようこそ, ${user.username}さん (管理者)</p>
 			<div class="main-nav">
-				<a href="attendance?action=filter">勤怠履歴管理</a> <a href="${pageContext.request.contextPath}/jsp/user_management.jsp">ユーザー管理</a>
-				<a href="logout">ログアウト</a>
+				<a href="<c:url value='/attendance'/>?action=filter">勤怠履歴管理</a> <!-- 元は attendance?action=filter -->
+				<a href="${pageContext.request.contextPath}/jsp/user_management.jsp">ユーザー管理</a>
+				<a href="<c:url value='/logout'/>">ログアウト</a> <!-- 元は logout -->
 			</div>
 			<c:if test="${not empty sessionScope.successMessage}">
 				<p class="success-message"><c:out value="${sessionScope.successMessage}"/></p> <c:remove var="successMessage" scope="session"/>
