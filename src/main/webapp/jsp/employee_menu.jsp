@@ -8,7 +8,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8"> <title>従業員メニュー</title>
-<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="<c:url value='/style.css'/>">
 </head>
 <body>
 	<div class="container">
@@ -18,11 +18,11 @@
 			<p class="success-message"><c:out value="${sessionScope.successMessage}"/></p><c:remove var="successMessage" scope="session"/>
 		</c:if>
 		<div class="button-group">
-			<form action="attendance" method="post" style="display:inline;">
+			<form action="<c:url value='/attendance'/>" method="post" style="display:inline;">
 				<input type="hidden" name="action" value="check_in">
 				<input type="submit" value="出勤">
 			</form>
-			<form action="attendance" method="post" style="display:inline;">
+			<form action="<c:url value='/attendance'/>" method="post" style="display:inline;">
 				<input type="hidden" name="action" value="check_out">
 				<input type="submit" value="退勤">
             </form>
