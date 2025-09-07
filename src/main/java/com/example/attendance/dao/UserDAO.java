@@ -20,6 +20,23 @@ public class UserDAO {
 	      return sb.toString();
 	    }catch(Exception e){ throw new RuntimeException(e); }
 	  }
+	
+	// UserDAO に追加
+	public User findOne(String username){
+	  String sql = "SELECT username, role, enabled FROM users WHERE username=?";
+	  try (Connection con = Db.get();
+	       PreparedStatement ps = con.prepareStatement(sql)) {
+	    ps.setString(1, username);
+	    try (ResultSet rs = ps.executeQuery()){
+	      if (rs.next()){
+	        User u = new User(rs.getString(1), null, rs.getString(2), rs.getBoolean(3));
+	        return u;
+	      }
+	    }
+	  } catch (SQLException e) { throw new RuntimeException(e); }
+	  return null;
+	}
+
 
 	  // ---- 認証（ログイン用）----
 	  public User findByIdAndPassword(String username, String rawPassword) {

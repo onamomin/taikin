@@ -25,16 +25,18 @@ private final AttendanceDAO attendanceDAO = new AttendanceDAO();
 protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	String username = req.getParameter("username");
 	String password = req.getParameter("password");
-	User user = userDAO.findByUsername(username);
+	User user = userDAO.findByIdAndPassword(username,password);
 	
-	if (user != null && user.isEnabled() && userDAO.verifyPassword(username, password)) {
+	if (user != null && user.isEnabled()) {
 		HttpSession session = req.getSession();
 		session.setAttribute("user", user);
 		session.setAttribute("successMessage", "ログインしました。"); // Store in session
 		
 		if ("admin".equals(user.getRole())) {
 			req.setAttribute("allAttendanceRecords", attendanceDAO.findAll());
-			Map<String, Long> totalHoursByUser = attendanceDAO.findAll().stream().collect(Collectors.groupingBy(com.example.attendance.dto.Attendance::getUserId, Collectors.summingLong(att -> {
+			Map<String, Long> totalHoursByUser = attendanceDAO.findAll().stream().collect(Collectors
+					.groupingBy(com.example.attendance.dto.Attendance::getUserId, 
+					Collectors.summingLong(att -> {
 				if (att.getCheckInTime() != null && att.getCheckOutTime() != null) {
 					return java.time.temporal.ChronoUnit.HOURS.between(att.getCheckInTime(), att.getCheckOutTime());
 				}
