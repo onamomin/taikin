@@ -126,4 +126,27 @@ public class UserDAO {
 	      return ps.executeUpdate() == 1;
 	    } catch (SQLException e) { throw new RuntimeException(e); }
 	  }
+	  
+	// 管理者（enabled=TRUE）の総数を返す
+	  public long countEnabledAdmins() {
+	      String sql = "SELECT COUNT(*) FROM users WHERE role='admin' AND enabled=TRUE";
+	      try (Connection con = Db.get();
+	           PreparedStatement ps = con.prepareStatement(sql);
+	           ResultSet rs = ps.executeQuery()) {
+	          return rs.next() ? rs.getLong(1) : 0L;
+	      } catch (SQLException e) { throw new RuntimeException(e); }
+	  }
+
+	  // 指定ユーザー以外で、enabledな管理者が1人以上いるか
+	  public boolean existsAnotherEnabledAdmin(String excludeUsername) {
+	      String sql = "SELECT COUNT(*) FROM users WHERE role='admin' AND enabled=TRUE AND username <> ?";
+	      try (Connection con = Db.get();
+	           PreparedStatement ps = con.prepareStatement(sql)) {
+	          ps.setString(1, excludeUsername);
+	          try (ResultSet rs = ps.executeQuery()) {
+	              return rs.next() && rs.getLong(1) > 0;
+	          }
+	      } catch (SQLException e) { throw new RuntimeException(e); }
+	  }
+
 }
