@@ -20,18 +20,19 @@
 		<a href="<c:url value='/logout'/>">ログアウト</a>
 	</div>
 	<c:if test="${not empty sessionScope.successMessage}">
-		<p class="success-message"><c:out value="${sessionScope.successMessage}"/></p> <c:remove var="successMessage" scope="session"/>
+		<p class="success-message"><c:out value="${sessionScope.successMessage}"/></p>
+		<c:remove var="successMessage" scope="session"/>
 	</c:if>
 	<h2>ユーザー追加/編集</h2>
 	<!-- kokonaosu -->
 	<form action="<c:url value='/users'/>" method="post" class="user-form">
-		<input type="hidden" name="action" value="${userToEdit != null ? 'update' : 'add'}"><!-- 元はこれ → <c:choose><c:when test="${userToEdit != null}">update</c:when><c:otherwise>add</c:otherwise></c:choose> -->
-		<c:if test="${userToEdit != null}">
-			<input type="hidden" name="username" value="${userToEdit.username}">
-		</c:if>
+		<input type="hidden" name="action" value="${userToEdit != null ? 'update' : 'add'}"><%-- 元はこれ → <c:choose><c:when test="${userToEdit != null}">update</c:when><c:otherwise>add</c:otherwise></c:choose> --%>
+		<%--<c:if test="${userToEdit != null}">
+			 <input type="hidden" name="username" value="${userToEdit.username}"> 
+		</c:if> --%>
 		<!-- ゆーざーID -->
 		<label for="username">ユーザーID:</label>
-		<!-- 元はこれ → <c:out value="${userToEdit.username}"/> -->
+		<%-- 元はこれ → <c:out value="${userToEdit.username}"/> --%>
 		<input type="text" id="username" name="username" value="${userToEdit.username}" <c:if test="${userToEdit != null}">readonly</c:if> required>
 		<!-- パスワード -->
 		<label for="password">パスワード:</label>
@@ -43,8 +44,8 @@
 		
 		<label for="role">役割:</label>
 		<select id="role" name="role" required>
-			<option value="employee" <c:if test="${userToEdit.role == 'employee'}">selected</c:if>>従業員</option>
-			<option value="admin" <c:if test="${userToEdit.role == 'admin'}">selected</c:if>>管理者</option>
+			<option value="employee" <c:if test="${userToEdit != null and userToEdit.role == 'employee'}">selected</c:if>>従業員</option>
+			<option value="admin" <c:if test="${userToEdit != null and userToEdit.role == 'admin'}">selected</c:if>>管理者</option>
 		</select>
 		<p>
 			<label for="enabled">アカウント有効:</label>
@@ -52,7 +53,8 @@
 		</p>
 		<!-- グループ -->
 		<div class="button-group">
-			<input type="submit" value="${userToEdit != null ? '更新' : '追加'}"> <!-- 元は → "<c:choose><c:when test="${userToEdit != null}">更新</c:when><c:otherwise>追加</c:otherwise></c:choose>"-->
+			<input type="submit" value="${userToEdit != null ? '更新' : '追加'}"> 
+			<%-- 元は → "<c:choose><c:when test="${userToEdit != null}">更新</c:when><c:otherwise>追加</c:otherwise></c:choose>"--%>
 		</div>
 	</form>
 		<c:if test="${userToEdit != null}">
@@ -60,7 +62,7 @@
 				<input type="hidden" name="action" value="reset_password">
 				<input type="hidden" name="username" value="${userToEdit.username}">
 				<input type="hidden" name="newPassword" value="password">
-				<input type="submit" value="パスワードリセット" class="buttonsecondary"
+				<input type="submit" value="パスワードリセット" class="button secondary"
 					onclick="return confirm('本当にパスワードをリセットしますか?(デフォルトパスワー ド: password)');">
 			</form>
 		</c:if>
@@ -88,10 +90,10 @@
 	               			value="${u.enabled ? '無効化' : '有効化'}"
 	               			onclick="return confirm('本当にこのユーザーを${u.enabled ? '無効' : '有効'}にしますか？');">
 						
-						<!-- 元 → <input type="submit" value="<c:choose><c:when
+						<%-- 元 → <input type="submit" value="<c:choose><c:when
 							test="${u.enabled}">無効化</c:when><c:otherwise>有効化</c:otherwise></c:choose>"
 							class="button <c:choose><c:when test="${u.enabled}">danger</c:when><c:otherwise>secondary</c:otherwise></c:choose>"
-							onclick="return confirm('本当にこのユーザーを<c:choose><c:when test="${u.enabled}">無効 </c:when><c:otherwise>有効</c:otherwise></c:choose>にしますか?');">編集</a> -->
+							onclick="return confirm('本当にこのユーザーを<c:choose><c:when test="${u.enabled}">無効 </c:when><c:otherwise>有効</c:otherwise></c:choose>にしますか?');">編集</a> --%>
 					</form>
 				</td>
 				
